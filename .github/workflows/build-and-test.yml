@@ -117,6 +117,14 @@ jobs:
             **/build/test-results/test/**
             **/junit.*.xml
             !**/binary/**
+      - uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          files: ./build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml # optional
+          flags: unittests # optional
+          name: codecov-umbrella # optional
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+          verbose: true # optional (default = false)      
       - name: Ensure codegen is updated
         uses: ./.github/actions/ensure-codegen-updated
 
